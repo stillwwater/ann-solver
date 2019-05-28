@@ -2,6 +2,7 @@
 #define _ANN_SOLVER
 
 #include <string>
+#include <vector>
 #include "room.h"
 
 namespace ann
@@ -19,7 +20,7 @@ struct Info
     int peak;
     double avg_bf;
     bool solved;
-    std::string solution;
+    std::vector<std::string> solutions;
 };
 
 void log_info(const Info& info);

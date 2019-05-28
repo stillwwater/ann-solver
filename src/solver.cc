@@ -14,7 +14,7 @@ namespace solver
 
 Info solve(Room* room, bool log) {
     const char dirs[4] = {'u', 'r', 'l', 'd'};
-    std::queue<Room*> open;
+    std::queue<Room *> open;
     std::set<size_t> visited;
     Info info = {};
 
@@ -52,13 +52,9 @@ Info solve(Room* room, bool log) {
                 visited.insert(trial_hash);
 
                 if (trial->state == Room::Pass) {
-                    info.solution = trial->solution;
-                    while (open.size() > 0) {
-                        delete open.front();
-                        open.pop();
-                    }
+                    info.solutions.push_back(trial->solution);
                     info.solved = true;
-                    return info;
+                    trial->state = Room::Ok;
                 }
                 continue;
             }
@@ -76,15 +72,14 @@ Info solve(Room* room, bool log) {
         info.avg_bf = (info.avg_bf + info.bfactor) / 2.0;
 
         if (log) {
-            info.solution = room->solution;
             log_info(info);
+            std::cout << room->solution << std::endl;
             engine::pprint(room);
         }
 
         delete room;
     }
 
-    info.solution = "No solution";
     return info;
 }
 
@@ -96,7 +91,6 @@ void log_info(const Info& info) {
     std::cout << "open    : " << info.open << std::endl;
     std::cout << "bfactor : " << info.bfactor << std::endl;
     std::cout << "avg_bf  : " << info.avg_bf << std::endl;
-    std::cout << info.solution << std::endl;
 }
 
 } // namespace solver
