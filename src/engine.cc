@@ -11,7 +11,6 @@ namespace Engine
 
 Room* create_room(const char* level, int width, int height) {
     auto room = new Room(width, height, 2);
-
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             Entity entity;
@@ -45,6 +44,16 @@ void write(Room* room, Entity entity) {
     int x = entity.position.x;
     int y = entity.position.y;
     room->map[z + room->layers * (x + y * room->width)] = entity;
+}
+
+size_t hash(Room* room) {
+    int size = room->width * room->height * room->layers;
+    int h = 0;
+    for (int i = 0; i < size; i++) {
+        char token = room->map[i].token;
+        h = token + (h << 6) + (h << 16) - h;
+    }
+    return h;
 }
 
 void pprint(Room* room) {
@@ -94,33 +103,32 @@ Room::State exec(Room* room, const char* input, bool show) {
     pprint(room);
 
     for (int i = 0; input[i] != 0; i++) {
-        auto res = exec(room, input[i]);
+        move(room, input[i]);
         if (show) {
             std::cout << "state: " << i + 1 << std::endl;
             std::cout << "input: " << input[i] << std::endl;
             pprint(room);
         }
-        if (res != Room::Ok) {
-            return res;
+        if (room->state != Room::Ok) {
+            return room->state;
         }
     }
     room->state = Room::Fail;
     return Room::Fail;
 }
 
-Room::State exec(Room* room, char direction) {
+bool move(Room* room, char direction) {
     switch (direction) {
         case 'u':
-        case 'U': move(room, Vector2(0, -1)); break;
+        case 'U': return move(room, Vector2(0, -1));
         case 'r':
-        case 'R': move(room, Vector2(+1, 0)); break;
+        case 'R': return move(room, Vector2(+1, 0));
         case 'd':
-        case 'D': move(room, Vector2(0, +1)); break;
+        case 'D': return move(room, Vector2(0, +1));
         case 'l':
-        case 'L': move(room, Vector2(-1, 0)); break;
-
+        case 'L': return move(room, Vector2(-1, 0));
     }
-    return room->state;
+    return false;
 }
 
 bool move(Room* room, Vector2 direction) {
@@ -275,6 +283,26 @@ int map_layer(char token) {
 
         default: return -1;
     }
+}
+
+bool is_crew(char token) {
+    switch (token) {
+        case Entity::Steve:
+        case Entity::Ava:
+        case Entity::Carl:
+            return true;
+    }
+    return false;
+}
+
+bool is_exit(char token) {
+    switch (token) {
+        case Entity::_Steve:
+        case Entity::_Ava:
+        case Entity::_Carl:
+            return true;
+    }
+    return false;
 }
 
 } // namespace Engine

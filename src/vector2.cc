@@ -16,7 +16,7 @@ bool Vector2::operator==(const Vector2& vec2) {
 }
 
 bool Vector2::operator!=(const Vector2& vec2) {
-    return this->x != vec2.x && this->y != vec2.y;
+    return this->x != vec2.x || this->y != vec2.y;
 }
 
 Vector2 Vector2::operator+(const Vector2& vec2) const {
