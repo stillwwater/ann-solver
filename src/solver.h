@@ -24,7 +24,7 @@ struct Info
 };
 
 void log_info(const Info& info);
-Info solve(Room* room, bool log);
+Info solve(Room* room, bool log, int sleep);
 
 } // namespace solver
 } // namespace ann

@@ -99,8 +99,10 @@ char* serialize(Room* room) {
 }
 
 Room::State exec(Room* room, const char* input, bool show) {
-    std::cout << "state: 0" << std::endl;
-    pprint(room);
+    if (show) {
+        std::cout << "state: 0" << std::endl;
+        pprint(room);
+    }
 
     for (int i = 0; input[i] != 0; i++) {
         move(room, input[i]);

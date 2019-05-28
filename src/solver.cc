@@ -2,6 +2,8 @@
 #include <set>
 #include <queue>
 #include <string>
+#include <chrono>
+#include <thread>
 #include "entity.h"
 #include "engine.h"
 #include "room.h"
@@ -12,7 +14,7 @@ namespace ann
 namespace solver
 {
 
-Info solve(Room* room, bool log) {
+Info solve(Room* room, bool log, int sleep) {
     const char dirs[4] = {'u', 'r', 'l', 'd'};
     std::queue<Room *> open;
     std::set<size_t> visited;
@@ -25,6 +27,11 @@ Info solve(Room* room, bool log) {
         room = open.front();
         int bfactor = 0;
         open.pop();
+
+        if (sleep) {
+            using std::chrono::milliseconds;
+            std::this_thread::sleep_for(milliseconds(sleep));
+        }
 
         for (int i = 0; i < 4; i++) {
             info.trials++;
