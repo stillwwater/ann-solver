@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 
-namespace Ann
+namespace ann
 {
-namespace Config
+namespace config
 {
 
 Level parse_level(const char* path, int n = 0) {
@@ -36,5 +36,5 @@ Level parse_level(const char* path, int n = 0) {
     return level;
 }
 
-} // namespace Config
-} // namespace Ann
+} // namespace config
+} // namespace ann

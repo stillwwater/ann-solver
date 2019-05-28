@@ -7,9 +7,9 @@
 #include "room.h"
 #include "solver.h"
 
-namespace Ann
+namespace ann
 {
-namespace Solver
+namespace solver
 {
 
 Info solve(Room* room, bool log) {
@@ -29,7 +29,7 @@ Info solve(Room* room, bool log) {
         for (int i = 0; i < 4; i++) {
             info.trials++;
             auto trial = new Room(room);
-            bool did_move = Engine::move(trial, dirs[i]);
+            bool did_move = engine::move(trial, dirs[i]);
 
             if (trial->state == Room::Fail) {
                 delete trial;
@@ -43,7 +43,7 @@ Info solve(Room* room, bool log) {
                 continue;
             }
 
-            size_t trial_hash = Engine::hash(trial);
+            size_t trial_hash = engine::hash(trial);
 
             if (visited.find(trial_hash) == visited.end()) {
                 bfactor++;
@@ -78,7 +78,7 @@ Info solve(Room* room, bool log) {
         if (log) {
             info.solution = room->solution;
             log_info(info);
-            Engine::pprint(room);
+            engine::pprint(room);
         }
 
         delete room;
@@ -99,5 +99,5 @@ void log_info(const Info& info) {
     std::cout << info.solution << std::endl;
 }
 
-} // namespace Solver
-} // namespace Ann
+} // namespace solver
+} // namespace ann

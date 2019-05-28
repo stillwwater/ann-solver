@@ -4,9 +4,9 @@
 #include "vector2.h"
 #include "entity.h"
 
-namespace Ann
+namespace ann
 {
-namespace Engine
+namespace engine
 {
 
 Room* create_room(const char* level, int width, int height) {
@@ -305,5 +305,5 @@ bool is_exit(char token) {
     return false;
 }
 
-} // namespace Engine
-} // namespace Ann
+} // namespace engine
+} // namespace ann

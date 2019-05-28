@@ -1,6 +1,6 @@
 #include "entity.h"
 
-namespace Ann
+namespace ann
 {
 
 Entity::Entity() : token(Entity::Empty), position() { }
@@ -12,4 +12,4 @@ Entity::Entity(char token, Vector2 position, int layer) {
     this->layer = layer;
 }
 
-} // namespace Ann
+} // namespace ann

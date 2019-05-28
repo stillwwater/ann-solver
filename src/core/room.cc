@@ -2,7 +2,7 @@
 #include "room.h"
 #include "entity.h"
 
-namespace Ann
+namespace ann
 {
 
 Room::Room(int width, int height, int layers) {
@@ -31,4 +31,4 @@ Room::~Room() {
     delete[] this->map;
 }
 
-} // namespace Ann
+} // namespace ann

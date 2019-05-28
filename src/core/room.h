@@ -5,7 +5,7 @@
 #include "entity.h"
 #include "vector2.h"
 
-namespace Ann
+namespace ann
 {
 
 struct Room
@@ -22,6 +22,6 @@ struct Room
     ~Room();
 };
 
-} // namespace Ann
+} // namespace ann
 
 #endif

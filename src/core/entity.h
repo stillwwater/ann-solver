@@ -3,7 +3,7 @@
 
 #include "vector2.h"
 
-namespace Ann
+namespace ann
 {
 struct Entity
 {
@@ -27,6 +27,6 @@ struct Entity
 };
 
 enum MoveState { Move, Cancel, Block, Merge, Destroy, Inherit };
-} // namespace Ann
+} // namespace ann
 
 #endif

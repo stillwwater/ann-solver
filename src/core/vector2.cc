@@ -1,6 +1,6 @@
 #include "vector2.h"
 
-namespace Ann
+namespace ann
 {
 
 Vector2::Vector2() : x(0), y(0) { }
@@ -35,4 +35,4 @@ Vector2 Vector2::operator/(int scalar) const {
     return Vector2(this->x / scalar, this->y / scalar);
 }
 
-} // namespace Ann
+} // namespace ann

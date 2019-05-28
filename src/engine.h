@@ -5,9 +5,9 @@
 #include "entity.h"
 #include "room.h"
 
-namespace Ann
+namespace ann
 {
-namespace Engine
+namespace engine
 {
 
 Room* create_room(const char* level, int width, int height);
@@ -35,6 +35,6 @@ bool is_crew(char token);
 bool is_exit(char token);
 
 } // namespace engine
-} // namespace Ann
+} // namespace ann
 
 #endif

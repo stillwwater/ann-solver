@@ -4,9 +4,9 @@
 #include <string>
 #include "room.h"
 
-namespace Ann
+namespace ann
 {
-namespace Solver
+namespace solver
 {
 
 struct Info
@@ -25,7 +25,7 @@ struct Info
 void log_info(const Info& info);
 Info solve(Room* room, bool log);
 
-} // namespace Solver
-} // namespace Ann
+} // namespace solver
+} // namespace ann
 
 #endif

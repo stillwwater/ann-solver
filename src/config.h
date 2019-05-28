@@ -3,9 +3,9 @@
 
 #include <string>
 
-namespace Ann
+namespace ann
 {
-namespace Config
+namespace config
 {
 
 struct Level
@@ -16,7 +16,7 @@ struct Level
 
 Level parse_level(const char* path, int n);
 
-} // namespace Config
-} // namespace Ann
+} // namespace config
+} // namespace ann
 
 #endif

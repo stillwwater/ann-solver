@@ -1,7 +1,7 @@
 #ifndef _SOLVER_VECTOR2
 #define _SOLVER_VECTOR2
 
-namespace Ann
+namespace ann
 {
 struct Vector2
 {
